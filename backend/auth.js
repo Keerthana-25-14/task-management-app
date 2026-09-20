@@ -20,18 +20,20 @@ router.post("/register", async (req, res) => {
 
         const sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
 
-        db.query(sql, [name, email, hashedPassword], (err, result) => {
-            if (err) {
-                if (err.code === "ER_DUP_ENTRY") {
-                    return res.status(400).json({
-                        message: "Email already registered"
-                    });
-                }
+       db.query(sql, [name, email, hashedPassword], (err, result) => {
+    if (err) {
+        console.log("REGISTER DATABASE ERROR:", err);
 
-                return res.status(500).json({
-                    message: "Database error"
-                });
-            }
+        if (err.code === "ER_DUP_ENTRY") {
+            return res.status(400).json({
+                message: "Email already registered"
+            });
+        }
+
+        return res.status(500).json({
+            message: "Database error"
+        });
+    }
 
             res.status(201).json({
                 message: "User registered successfully",
