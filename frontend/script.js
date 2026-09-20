@@ -2,7 +2,7 @@
 // TASKFLOW - FRONTEND APPLICATION
 // =====================================================
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://task-management-app-production-dbe5.up.railway.app/api";
 
 // =====================================================
 // GLOBAL DATA
